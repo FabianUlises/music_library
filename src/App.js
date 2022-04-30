@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react'
-import Gallery from './components/Gallery'
-import SearchBar from './components/SearchBar'
+import { useEffect, useState } from 'react';
+import Gallery from './components/Gallery';
+import SearchBar from './components/SearchBar';
+import ArtistView from './components/ArtistView';
+import AlbumView from './components/AlbumView'
+import { Router } from 'react-router-dom';
 
 function App(){
     let [search, setSearch] = useState('new')
@@ -34,9 +37,13 @@ function App(){
 
     return (
         <div>
-            <SearchBar handleSearch={handleSearch} />
             {message}
-            <Gallery data={data} />
+            <Router>
+                <SearchBar handleSearch={handleSearch} />
+                <Gallery data={data} />
+                <AlbumView />
+                <ArtistView />
+            </Router>
         </div>
     )
 }
