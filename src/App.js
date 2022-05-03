@@ -15,6 +15,7 @@ function App(){
 
 
     useEffect(() => {
+        // all tech
         if(search) {
             const fetchData = async () => {
                 document.title = `${search} Music`
