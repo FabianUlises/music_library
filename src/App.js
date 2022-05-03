@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import Gallery from './components/Gallery';
 import SearchBar from './components/SearchBar';
 import ArtistView from './components/ArtistView';
 import AlbumView from './components/AlbumView';
-import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { Fragment } from 'react';
 
 function App(){
@@ -37,7 +37,7 @@ function App(){
     }
 
     return (
-        <div>
+        <div className='App'>
         {message}
             <Router>
                 <Routes>

@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import { useState, UseEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
