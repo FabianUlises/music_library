@@ -1,13 +1,13 @@
 import { useState, useRef } from 'react'
 import Gallery from './components/Gallery'
 import SearchBar from './components/SearchBar'
-import { DataContext } from './context/DataContext'
-import SearchContext from './context/SearchContext'
+import { DataContext } from './context/DataContext.jsx'
+import { SearchContext } from './context/SearchContext.jsx'
 
 function App() {
     let [message, setMessage] = useState('Search for Music!')
- let [data, setData] = useState([])
- let searchInput = useRef('')
+    let [data, setData] = useState([])
+    let searchInput = useRef('')
 
     const API_URL = 'https://itunes.apple.com/search?term='
     
