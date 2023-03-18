@@ -8,15 +8,12 @@ import ArtistView from './components/ArtistView';
 import AlbumView from './components/AlbumView';
 
 function App() {
+  // State
   let [search, setSearch] = useState('');
   let [message, setMessage] = useState('Search For Music!');
   let [data, setData] = useState([]);
   const API_URL = "https://itunes.apple.com/search?term=";
-  // Function to update search
-  const handleSearch = (e, term) => {
-    e.preventDefault();
-    setSearch(term)
-  };
+  // UseEffect
   useEffect(() => {
     if(search) {
       const fetchData = async () => {
@@ -31,7 +28,12 @@ function App() {
       }
       fetchData();
     }
-  }, [search])
+  }, [search]);
+  // Function to update search
+  const handleSearch = (e, term) => {
+    e.preventDefault();
+    setSearch(term)
+  };
   return (
     <div className="App">
       <header>
