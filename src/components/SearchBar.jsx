@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  // State
+  let [searchTerm, setSearchTerm] = useState('');
   return (
-    <div>SearchBar</div>
+    <form>
+      <input type="text" placeHolder='Enter a search term here' />
+      <button type='button'>Submit</button>
+    </form>
   )
 };
 export default SearchBar;
