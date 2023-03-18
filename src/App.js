@@ -1,41 +1,47 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.css';
 // Components
 import Gallery from './components/Gallery';
 import SearchBar from './components/SearchBar';
+// Context
+import { DataContext } from './context/DataContext';
+import { SearchContext } from './context/SearchContext';
 
 function App() {
-  let [search, setSearch] = useState('');
+  // State
   let [message, setMessage] = useState('Search For Music!');
   let [data, setData] = useState([]);
+  let searchInput = useRef('');
   const API_URL = "https://itunes.apple.com/search?term=";
-  // Function to update search
+  // Function to handle search and fetch data
   const handleSearch = (e, term) => {
     e.preventDefault();
-    setSearch(term)
-  };
-  useEffect(() => {
-    if(search) {
-      const fetchData = async () => {
-        document.title = `${search} Music`;
-        const res = await fetch(`${API_URL}${search}`);
-        const data = await res.json();
-        if(data.results.length > 0) {
-          setData(data.results);
-        } else {
-          setMessage('Not Found');
-        }
+    const fetchData = async () => {
+      document.title = `${term} Music`;
+      const res = await fetch(`${API_URL}${term}`);
+      const data = await res.json();
+      if(data.results.length > 0) {
+        return setData(data.results);
+      } else {
+        return setMessage('Not Found');
       }
-      fetchData();
     }
-  }, [search])
+    fetchData();
+  };
   return (
     <div className="App">
       <header>
         <p>{message}</p>
       </header>
-      <SearchBar handleSearch={handleSearch} />
-      <Gallery data={data} />
+      <SearchContext.Provider value={{
+        term: searchInput,
+        handleSearch: handleSearch
+      }}>
+        <SearchBar/>
+      </SearchContext.Provider>
+      <DataContext.Provider value={data}>
+        <Gallery />
+      </DataContext.Provider>
     </div>
   );
 };
